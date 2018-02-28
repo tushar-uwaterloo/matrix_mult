@@ -1,3 +1,7 @@
+LEN ?= 8
+DW  ?= 8
+N   ?= 8
+
 mat_vect_mult2:
 	rm -Rf obj_dir
 	verilator -CFLAGS "-DN=$(LEN)" -cc mat_vect_mult2.v --exe mat_vect_mult2_tb.c -GN=${LEN} -GDW=${DW}
@@ -12,3 +16,5 @@ mat_vect_mult2_vcd:
 hw:
 	yosys -s run_yosys.ys
 
+clean::
+	rm -rf obj_dir
