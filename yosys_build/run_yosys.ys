@@ -1,0 +1,3 @@
+# yosys -s run_yosys.ys
+read verilog mat_vect_mult2.v
+synth_xilinx -edif mat_mult.edif -top mat_vect_mult2

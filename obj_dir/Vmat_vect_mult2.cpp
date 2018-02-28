@@ -311,10 +311,8 @@ void Vmat_vect_mult2::_eval(Vmat_vect_mult2__Syms* __restrict vlSymsp) {
     if ((((IData)(vlTOPp->aclk) & (~ (IData)(vlTOPp->__Vclklast__TOP__aclk))) 
 	 | ((IData)(vlTOPp->areset) & (~ (IData)(vlTOPp->__Vclklast__TOP__areset))))) {
 	vlTOPp->_sequent__TOP__1(vlSymsp);
-	vlTOPp->__Vm_traceActivity = (2U | vlTOPp->__Vm_traceActivity);
     }
     vlTOPp->_combo__TOP__3(vlSymsp);
-    vlTOPp->__Vm_traceActivity = (4U | vlTOPp->__Vm_traceActivity);
     // Final
     vlTOPp->__Vclklast__TOP__aclk = vlTOPp->aclk;
     vlTOPp->__Vclklast__TOP__areset = vlTOPp->areset;
@@ -337,7 +335,6 @@ void Vmat_vect_mult2::_eval_settle(Vmat_vect_mult2__Syms* __restrict vlSymsp) {
     Vmat_vect_mult2* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
     vlTOPp->_settle__TOP__2(vlSymsp);
-    vlTOPp->__Vm_traceActivity = (1U | vlTOPp->__Vm_traceActivity);
 }
 
 VL_INLINE_OPT QData Vmat_vect_mult2::_change_request(Vmat_vect_mult2__Syms* __restrict vlSymsp) {
@@ -375,7 +372,6 @@ void Vmat_vect_mult2::_ctor_var_reset() {
     }}
     __Vclklast__TOP__aclk = VL_RAND_RESET_I(1);
     __Vclklast__TOP__areset = VL_RAND_RESET_I(1);
-    __Vm_traceActivity = VL_RAND_RESET_I(32);
 }
 
 void Vmat_vect_mult2::_configure_coverage(Vmat_vect_mult2__Syms* __restrict vlSymsp, bool first) {
