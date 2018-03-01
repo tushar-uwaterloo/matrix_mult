@@ -66,7 +66,7 @@ int main(int argc, char **argv, char **env) {
                 if (q==N-1) top->s_axis_tlast = 1;
                 else      top->s_axis_tlast = 0;
                 
-                top->m_axis_tready = top->m_axis_tvalid;
+                top->m_axis_tready = 1;
                 if (q==N-1 && time%2!=0) {
                   //top->s_axis_tlast = 1;
                   q=0;

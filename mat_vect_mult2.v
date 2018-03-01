@@ -57,7 +57,10 @@ begin
   if (areset) begin
     s_axis_tready <= 'b0;
   end else begin
-    s_axis_tready <= ~m_axis_tvalid && s_axis_tvalid && ~s_axis_tlast;
+    if (s_axis_tlast || (m_axis_tvalid && ~m_axis_tready))
+      s_axis_tready <= 'b0;
+    else
+      s_axis_tready <= 'b1;
   end
 end
 
@@ -97,8 +100,8 @@ begin
   if (areset) begin
     m_axis_tvalid <= 'b0;
   end else begin
-    if (m_axis_tready) m_axis_tvalid <= 'b0;
-    else if (s_axis_tlast && s_axis_tready) m_axis_tvalid <= 'b1;
+    if (s_axis_tlast && s_axis_tready) m_axis_tvalid <= 'b1;
+    else if (m_axis_tready) m_axis_tvalid <= 'b0;
   end
 end
 
@@ -121,8 +124,7 @@ begin
     count <= 'b0;
   end else begin
     if (s_axis_tlast && s_axis_tready) begin
-      if (count == N-1) count <= 'b0;
-      else              count <= count + 'b1;
+      if (count != N-1) count <= count + 'b1;
     end
   end
 end
