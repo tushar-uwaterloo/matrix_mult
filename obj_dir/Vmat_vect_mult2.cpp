@@ -101,19 +101,19 @@ VL_INLINE_OPT void Vmat_vect_mult2::_sequent__TOP__1(Vmat_vect_mult2__Syms* __re
     __Vdlyvset__mat_vect_mult2__DOT__inp_vect_reg__v5 = 0U;
     __Vdlyvset__mat_vect_mult2__DOT__inp_vect_reg__v6 = 0U;
     __Vdlyvset__mat_vect_mult2__DOT__inp_vect_reg__v7 = 0U;
-    // ALWAYS at mat_vect_mult2.v:95
+    // ALWAYS at mat_vect_mult2.v:98
     if (vlTOPp->areset) {
 	__Vdly__m_axis_tvalid = 0U;
     } else {
-	if (vlTOPp->m_axis_tready) {
-	    __Vdly__m_axis_tvalid = 0U;
+	if (((IData)(vlTOPp->s_axis_tlast) & (IData)(vlTOPp->s_axis_tready))) {
+	    __Vdly__m_axis_tvalid = 1U;
 	} else {
-	    if (((IData)(vlTOPp->s_axis_tlast) & (IData)(vlTOPp->s_axis_tready))) {
-		__Vdly__m_axis_tvalid = 1U;
+	    if (vlTOPp->m_axis_tready) {
+		__Vdly__m_axis_tvalid = 0U;
 	    }
 	}
     }
-    // ALWAYS at mat_vect_mult2.v:106
+    // ALWAYS at mat_vect_mult2.v:109
     if (vlTOPp->areset) {
 	vlTOPp->m_axis_tlast = 0U;
     } else {
@@ -126,7 +126,7 @@ VL_INLINE_OPT void Vmat_vect_mult2::_sequent__TOP__1(Vmat_vect_mult2__Syms* __re
 	    }
 	}
     }
-    // ALWAYS at mat_vect_mult2.v:67
+    // ALWAYS at mat_vect_mult2.v:70
     if (vlTOPp->areset) {
 	__Vdly__m_axis_tdata = 0U;
     } else {
@@ -142,7 +142,7 @@ VL_INLINE_OPT void Vmat_vect_mult2::_sequent__TOP__1(Vmat_vect_mult2__Syms* __re
 	    }
 	}
     }
-    // ALWAYS at mat_vect_mult2.v:81
+    // ALWAYS at mat_vect_mult2.v:84
     if (vlTOPp->areset) {
 	__Vdly__mat_vect_mult2__DOT__slice = 0U;
     } else {
@@ -156,18 +156,15 @@ VL_INLINE_OPT void Vmat_vect_mult2::_sequent__TOP__1(Vmat_vect_mult2__Syms* __re
 	    }
 	}
     }
-    // ALWAYS at mat_vect_mult2.v:118
+    // ALWAYS at mat_vect_mult2.v:121
     if (vlTOPp->areset) {
 	__Vdly__mat_vect_mult2__DOT__count = 0U;
     } else {
 	if (((IData)(vlTOPp->s_axis_tlast) & (IData)(vlTOPp->s_axis_tready))) {
-	    __Vdly__mat_vect_mult2__DOT__count = (3U 
-						  & ((3U 
-						      == (IData)(vlTOPp->mat_vect_mult2__DOT__count))
-						      ? 0U
-						      : 
-						     ((IData)(1U) 
-						      + (IData)(vlTOPp->mat_vect_mult2__DOT__count))));
+	    if ((3U != (IData)(vlTOPp->mat_vect_mult2__DOT__count))) {
+		__Vdly__mat_vect_mult2__DOT__count 
+		    = (3U & ((IData)(1U) + (IData)(vlTOPp->mat_vect_mult2__DOT__count)));
+	    }
 	}
     }
     // ALWAYS at mat_vect_mult2.v:42
@@ -239,10 +236,10 @@ VL_INLINE_OPT void Vmat_vect_mult2::_sequent__TOP__1(Vmat_vect_mult2__Syms* __re
 	    = __Vdlyvval__mat_vect_mult2__DOT__inp_vect_reg__v7;
     }
     // ALWAYS at mat_vect_mult2.v:55
-    vlTOPp->s_axis_tready = ((~ (IData)(vlTOPp->areset)) 
-			     & (((~ (IData)(vlTOPp->m_axis_tvalid)) 
-				 & (IData)(vlTOPp->s_axis_tvalid)) 
-				& (~ (IData)(vlTOPp->s_axis_tlast))));
+    vlTOPp->s_axis_tready = (1U & ((~ (IData)(vlTOPp->areset)) 
+				   & (~ ((IData)(vlTOPp->s_axis_tlast) 
+					 | ((IData)(vlTOPp->m_axis_tvalid) 
+					    & (~ (IData)(vlTOPp->m_axis_tready)))))));
     vlTOPp->m_axis_tvalid = __Vdly__m_axis_tvalid;
     vlTOPp->inp_vect_rdy = (1U & ((0U == (IData)(vlTOPp->mat_vect_mult2__DOT__count))
 				   ? (IData)(vlTOPp->s_axis_tready)
