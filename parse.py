@@ -1,7 +1,7 @@
 from Verilog_VCD import parse_vcd
 import json
 
-waveform = parse_vcd('tb_regfile.vcd')
+waveform = parse_vcd('verilator.vcd')
 
 result = { 'signal': [] }
 
@@ -12,8 +12,10 @@ for k in waveform.keys():
     nets = signal['nets'][0]
     tv   = signal['tv'] 
 
-    if nets['name'] != 'clk' and nets['name'] != 'raddr[9:0]':
+    '''
+    if nets['name'] != 'aclk' and nets['name'] != 'm_axis_tdata[18:0]':
         continue
+    '''
 
     signal_name = "{}.{}".format(nets['hier'], nets['name'])
     signals = []

@@ -1,3 +1,4 @@
 *.swp
 *.swo
 obj_dir/
+__pycache__/
