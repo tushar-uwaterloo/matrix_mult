@@ -16,5 +16,8 @@ mat_vect_mult2_vcd:
 hw:
 	yosys -s run_yosys.ys
 
+wavedrom: verilator.vcd
+	python parse.py -o verilator -- $^
+
 clean::
 	rm -rf obj_dir
