@@ -16,8 +16,32 @@ mat_vect_mult2_vcd:
 hw:
 	yosys -s run_yosys.ys
 
-wavedrom: verilator.vcd
-	python parse.py -o verilator -- $^
+%.pdf : %.md %_deps
+	pandoc -Mfignos-star-name=Figure -Mfignos-plus-name=figure -Mfignos-cleveref=On --dpi 144 --filter pandoc-fignos -o $@ $<
+
+lab2-wavedrom.png lab2-wavedrom.json: verilator.vcd
+	python parse.py -o lab2-wavedrom -- $^
+	convert lab2-wavedrom.svg lab2-wavedrom.png
+	rm lab2-wavedrom.svg
+
+lab2-report_deps: lab2-wavedrom.png lab2-screenshot.png
 
 clean::
 	rm -rf obj_dir
+	rm *.pdf
+
+
+doc: lab2-report.pdf
+
+lab2_deliverables = mat_vect_mult2.v \
+										mat_vect_mult2_tb.c \
+										mat_vect_mult2_tb_trace.c \
+										lab2-wavedrom.png \
+										lab2-wavedrom.json \
+										lab2-screenshot.png \
+										lab2-report.pdf\
+										hardware-report
+
+lab2.tar.gz: $(lab2_deliverables)
+	tar -czvf $@ $^
+	@echo "****** Deliverables Packed."
