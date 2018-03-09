@@ -13,15 +13,15 @@ mat_vect_mult2_vcd:
 	make -C obj_dir -j -f Vmat_vect_mult2.mk Vmat_vect_mult2
 	./obj_dir/Vmat_vect_mult2
 
-hw:
-	yosys -s run_yosys.ys
+hardware-report: run_yosys.ys
+	yosys -s run_yosys.ys > hardware-report
 
 %.pdf : %.md %_deps
 	pandoc -Mfignos-star-name=Figure -Mfignos-plus-name=figure -Mfignos-cleveref=On --dpi 144 --filter pandoc-fignos -o $@ $<
 
 lab2-wavedrom.png lab2-wavedrom.json: verilator.vcd
 	python parse.py -o lab2-wavedrom -- $^
-	convert lab2-wavedrom.svg lab2-wavedrom.png
+	convert -background none -density 144 lab2-wavedrom.svg lab2-wavedrom.png 
 	rm lab2-wavedrom.svg
 
 lab2-report_deps: lab2-wavedrom.png lab2-screenshot.png
