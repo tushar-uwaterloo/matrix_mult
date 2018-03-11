@@ -39,7 +39,7 @@ int main(int argc, char **argv, char **env) {
 
         //initializing vector
         for (int i=1; i<=N; i++) {
-          vect[i-1] = i;
+          vect[i-1] = 2;
         };
        
         //software calculation
@@ -85,6 +85,7 @@ int main(int argc, char **argv, char **env) {
                   if (r!=N-1) r=r+1;
                   else        r=N;
                 }; 
+
 #ifdef TRACE
 		m_trace->dump(time);
 		cout << "dumping trace" << endl;

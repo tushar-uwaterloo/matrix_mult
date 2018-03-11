@@ -10,6 +10,7 @@
 
 #include "verilated.h"
 class Vmat_vect_mult2__Syms;
+class VerilatedVcd;
 
 //----------
 
@@ -31,10 +32,11 @@ VL_MODULE(Vmat_vect_mult2) {
     VL_IN8(s_axis_tvalid,0,0);
     VL_IN8(s_axis_tlast,0,0);
     VL_OUT8(s_axis_tready,0,0);
+    VL_OUT8(m_axis_tdata,7,0);
     VL_OUT8(m_axis_tvalid,0,0);
     VL_OUT8(m_axis_tlast,0,0);
     VL_IN8(m_axis_tready,0,0);
-    VL_OUT(m_axis_tdata,17,0);
+    //char	__VpadToAlign13[3];
     
     // LOCAL SIGNALS
     // Internals; generally not touched by application code
@@ -49,10 +51,10 @@ VL_MODULE(Vmat_vect_mult2) {
     VL_SIG8(__Vclklast__TOP__aclk,0,0);
     VL_SIG8(__Vclklast__TOP__areset,0,0);
     //char	__VpadToAlign38[2];
+    VL_SIG(__Vm_traceActivity,31,0);
     
     // INTERNAL VARIABLES
     // Internals; generally not touched by application code
-    //char	__VpadToAlign44[4];
     Vmat_vect_mult2__Syms*	__VlSymsp;		// Symbol table
     
     // PARAMETERS
@@ -69,6 +71,8 @@ VL_MODULE(Vmat_vect_mult2) {
     Vmat_vect_mult2(const char* name="TOP");
     /// Destroy the model; called (often implicitly) by application code
     ~Vmat_vect_mult2();
+    /// Trace signals in the model; called by application code
+    void trace (VerilatedVcdC* tfp, int levels, int options=0);
     
     // USER METHODS
     
@@ -96,6 +100,17 @@ VL_MODULE(Vmat_vect_mult2) {
     static void	_eval_settle(Vmat_vect_mult2__Syms* __restrict vlSymsp);
     static void	_sequent__TOP__1(Vmat_vect_mult2__Syms* __restrict vlSymsp);
     static void	_settle__TOP__2(Vmat_vect_mult2__Syms* __restrict vlSymsp);
+    static void	traceChgThis(Vmat_vect_mult2__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
+    static void	traceChgThis__2(Vmat_vect_mult2__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
+    static void	traceChgThis__3(Vmat_vect_mult2__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
+    static void	traceChgThis__4(Vmat_vect_mult2__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
+    static void	traceFullThis(Vmat_vect_mult2__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
+    static void	traceFullThis__1(Vmat_vect_mult2__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
+    static void	traceInitThis(Vmat_vect_mult2__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
+    static void	traceInitThis__1(Vmat_vect_mult2__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
+    static void traceInit (VerilatedVcd* vcdp, void* userthis, uint32_t code);
+    static void traceFull (VerilatedVcd* vcdp, void* userthis, uint32_t code);
+    static void traceChg  (VerilatedVcd* vcdp, void* userthis, uint32_t code);
 } VL_ATTR_ALIGNED(128);
 
 #endif  /*guard*/

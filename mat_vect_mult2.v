@@ -1,6 +1,6 @@
 module mat_vect_mult2
   # (parameter N = 2,
-               DW = 8)
+               DW = 32)
     (aclk,
      areset,
      inp_vect,
@@ -25,7 +25,7 @@ input [DW-1:0]                       s_axis_tdata;
 input                                s_axis_tvalid;
 input                                s_axis_tlast;
 output reg                           s_axis_tready;
-output reg [(2*DW + $clog2(N))-1:0]  m_axis_tdata;
+output reg /*[(2*DW + $clog2(N))-1:0]*/ [DW-1:0]  m_axis_tdata;
 output reg                           m_axis_tvalid;
 output reg                           m_axis_tlast;
 input                                m_axis_tready;
@@ -35,6 +35,7 @@ reg [$clog2(N)-1:0]            slice;
 wire [DW-1:0]                  inp_vect_lat [0:N-1];
 reg [DW-1:0]                   inp_vect_reg [0:N-1];
 
+generate
 genvar i;
 for (i=0; i<N; i=i+1) begin : lat_loop
   assign inp_vect_lat[i] = (inp_vect_rdy && inp_vect_valid && slice == i) ? inp_vect : inp_vect_reg[i] ; 
@@ -48,7 +49,7 @@ for (i=0; i<N; i=i+1) begin : lat_loop
     end
   end
 end
-
+endgenerate
 
  
 //s_axis_tready
