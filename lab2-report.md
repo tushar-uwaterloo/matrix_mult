@@ -5,8 +5,8 @@
 ## Q1. RTL design
 Assume that the multiplication is between an $N \times N$ matrix and an $N \times 1$ vector.
 
-- Latency:
-- Throughput:
+- Latency: $(N + 1) * N$
+- Throughput: $\frac{1}{(N + 1) * N}$
 
 ## Q2. Waveforms
 
