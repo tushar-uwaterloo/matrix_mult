@@ -1,8 +1,8 @@
 # ECE627 Lab2 Report
 ## Group Members: 
-- Tushar Garg (tushar.garg@uwaterloo.ca)
 - Paulos Tegegn (ptegegn@uwaterloo.ca)
-- Sreagni Banerjee
+- Sreagni Banerjee (s33banerjee@uwaterloo.ca)
+- Tushar Garg (tushar.garg@uwaterloo.ca)
 - Zhuanhao Wu (zhuanhao.wu@uwaterloo.ca)
 
 ## Q1. RTL design
