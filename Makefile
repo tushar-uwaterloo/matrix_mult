@@ -39,8 +39,10 @@ lab2_deliverables = mat_vect_mult2.v \
 										lab2-wavedrom.png \
 										lab2-wavedrom.json \
 										lab2-screenshot.png \
-										lab2-report.pdf\
-										hardware-report
+										lab2-report.pdf \
+										hardware-report \
+										vivado_report
+
 
 lab2.tar.gz: $(lab2_deliverables)
 	tar -czvf $@ $^
