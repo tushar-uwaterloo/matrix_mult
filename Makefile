@@ -33,9 +33,16 @@ clean::
 
 doc: lab2-report.pdf
 
-lab2_deliverables = mat_vect_mult2.v \
-										mat_vect_mult2_tb.c \
-										mat_vect_mult2_tb_trace.c \
+mat_vect_mult.v: mat_vect_mult2.v
+	cp $^ $@
+mat_vect_mult_tb.c: mat_vect_mult2_tb.c
+	cp $^ $@
+mat_vect_mult_tb_trace.c: mat_vect_mult2_tb_trace.c
+	cp $^ $@
+
+lab2_deliverables = mat_vect_mult.v \
+										mat_vect_mult_tb.c \
+										mat_vect_mult_tb_trace.c \
 										lab2-wavedrom.png \
 										lab2-wavedrom.json \
 										lab2-screenshot.png \
@@ -47,3 +54,6 @@ lab2_deliverables = mat_vect_mult2.v \
 lab2.tar.gz: $(lab2_deliverables)
 	tar -czvf $@ $^
 	@echo "****** Deliverables Packed."
+	rm mat_vect_mult.v
+	rm mat_vect_mult_tb.c
+	rm mat_vect_mult_tb_trace.c

@@ -1,0 +1,39 @@
+[*]
+[*] GTKWave Analyzer v3.3.87 (w)1999-2017 BSI
+[*] Sun Mar 11 21:23:28 2018
+[*]
+[dumpfile] "/Users/allen/Dropbox/ECE627/matrix_mult/verilator.vcd"
+[dumpfile_mtime] "Sun Mar 11 21:16:11 2018"
+[dumpfile_size] 4603
+[savefile] "/Users/allen/Dropbox/ECE627/matrix_mult/waveform.gtkw"
+[timestart] 1
+[size] 1554 799
+[pos] 27 81
+*-3.847997 1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] TOP.
+[sst_width] 193
+[signals_width] 222
+[sst_expanded] 1
+[sst_vpaned_height] 237
+@28
+TOP.aclk
+TOP.areset
+@24
+TOP.inp_vect[7:0]
+@28
+TOP.inp_vect_rdy
+TOP.inp_vect_valid
+@24
+TOP.m_axis_tdata[18:0]
+@28
+TOP.m_axis_tlast
+TOP.m_axis_tready
+TOP.m_axis_tvalid
+@22
+TOP.s_axis_tdata[7:0]
+@28
+TOP.s_axis_tlast
+TOP.s_axis_tready
+TOP.s_axis_tvalid
+[pattern_trace] 1
+[pattern_trace] 0

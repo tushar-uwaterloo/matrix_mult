@@ -6,7 +6,7 @@
 - Zhuanhao Wu (zhuanhao.wu@uwaterloo.ca)
 
 ## Q1. RTL design
-Assume that the multiplication is between an $N \times N$ matrix and an $N \times 1$ vector.
+The vector is streamed one-element at a time and so is the matrix. The assumption is that either the vector is streamed completely before the matrix on the AXI stream bus OR the vector is streamed simultaneously with the matrix on AXI stream bus. We have tested our code on **PYNQ** for both of the mentioned assumptions and we are getting the desired results. We use 1-multiplier and 1-adder for this design as the input matrix/vector is being streamed one-element-at-a-time. The current multiplication and addition is happening in 1-clock cycle so we need 1-extra clock cycle to output the valid registered result. Assume that the multiplication is between an $N \times N$ matrix and an $N \times 1$ vector, then we would have the following data:
 
 - Latency: $(N + 1) * N$
 - Throughput: $\frac{1}{(N + 1) * N}$
@@ -76,4 +76,5 @@ With the optimization introduced by `vivado`, the number of `LUT6` primitive is 
 ### Trade-offs
 
 The problem statement requires that the data is streamed into the design one at a time, and the vector is streamed into the design at the beginning.
-Every element of the matrix will be used to calculate one multiplication and the result will be used in at most one addition. Thus, even if we can use multiple adders and multipliers, the data stream of matrix will limit the parallelism we can achieve and multiple adders/multipliers will not bring us any benefits.
+Every element of the matrix will be used to calculate one multiplication and the results will be used in at most one addition. Thus, even if we can use multiple adders and multipliers, the data stream of matrix will limit the parallelism we can achieve and multiple adders/multipliers will not bring us any benefits.
+The best we can do in this design is to split the multiplier and adder in 2-clock cycles, which increases the number of flip-flop usage but also increases the clock frequency on which the design can operate. For our design, we perform the addition and multiplication in the same clock cycle, hence we are saving flip-flops but our design will be slightly slower than the above mentioned design.
