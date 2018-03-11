@@ -1,6 +1,6 @@
 # ECE627 Lab2 Report
 ## Group Members: 
-*Please Add Your Names Here* Zhuanhao Wu (zhuanhao.wu@uwaterloo.ca)
+Tushar Garg (tushar.garg@uwaterloo.ca), Paulos Tegegn (ptegegn@uwaterloo.ca), Sreagni Banerjee, Zhuanhao Wu (zhuanhao.wu@uwaterloo.ca)
 
 ## Q1. RTL design
 Assume that the multiplication is between an $N \times N$ matrix and an $N \times 1$ vector.
